@@ -1,10 +1,10 @@
 package com.tag.photocaptureandgallery;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -57,9 +57,6 @@ public class MainActivity extends Activity {
 			public void onClick(DialogInterface dialog, int item) {
 				if (items[item].equals("Take Photo")) {
 					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					File f = new File(android.os.Environment
-							.getExternalStorageDirectory(), "temp.jpg");
-					intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
 					startActivityForResult(intent, REQUEST_CAMERA);
 				} else if (items[item].equals("Choose from Library")) {
 					Intent intent = new Intent(
@@ -78,70 +75,65 @@ public class MainActivity extends Activity {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == RESULT_OK) {
-			if (requestCode == REQUEST_CAMERA) {
-				File f = new File(Environment.getExternalStorageDirectory()
-						.toString());
-				for (File temp : f.listFiles()) {
-					if (temp.getName().equals("temp.jpg")) {
-						f = temp;
-						break;
-					}
-				}
-				try {
-					Bitmap bm;
-					BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
 
-					bm = BitmapFactory.decodeFile(f.getAbsolutePath(),
-							btmapOptions);
-
-					// bm = Bitmap.createScaledBitmap(bm, 70, 70, true);
-					ivImage.setImageBitmap(bm);
-
-					String path = android.os.Environment
-							.getExternalStorageDirectory()
-							+ File.separator
-							+ "Phoenix" + File.separator + "default";
-					f.delete();
-					OutputStream fOut = null;
-					File file = new File(path, String.valueOf(System
-							.currentTimeMillis()) + ".jpg");
-					try {
-						fOut = new FileOutputStream(file);
-						bm.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
-						fOut.flush();
-						fOut.close();
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else if (requestCode == SELECT_FILE) {
-				Uri selectedImageUri = data.getData();
-
-				String tempPath = getPath(selectedImageUri, MainActivity.this);
-				Bitmap bm;
-				BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
-				bm = BitmapFactory.decodeFile(tempPath, btmapOptions);
-				ivImage.setImageBitmap(bm);
-			}
+		if (resultCode == Activity.RESULT_OK) {
+			if (requestCode == SELECT_FILE)
+				onSelectFromGalleryResult(data);
+			else if (requestCode == REQUEST_CAMERA)
+				onCaptureImageResult(data);
 		}
 	}
 
-	public String getPath(Uri uri, Activity activity) {
+	private void onCaptureImageResult(Intent data) {
+		Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+		thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+		File destination = new File(Environment.getExternalStorageDirectory(),
+				System.currentTimeMillis() + ".jpg");
+
+		FileOutputStream fo;
+		try {
+			destination.createNewFile();
+			fo = new FileOutputStream(destination);
+			fo.write(bytes.toByteArray());
+			fo.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		ivImage.setImageBitmap(thumbnail);
+	}
+
+	@SuppressWarnings("deprecation")
+	private void onSelectFromGalleryResult(Intent data) {
+		Uri selectedImageUri = data.getData();
 		String[] projection = { MediaColumns.DATA };
-		@SuppressWarnings("deprecation")
-		Cursor cursor = activity
-				.managedQuery(uri, projection, null, null, null);
+		Cursor cursor = managedQuery(selectedImageUri, projection, null, null,
+				null);
 		int column_index = cursor.getColumnIndexOrThrow(MediaColumns.DATA);
 		cursor.moveToFirst();
-		return cursor.getString(column_index);
+
+		String selectedImagePath = cursor.getString(column_index);
+
+		Bitmap bm;
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(selectedImagePath, options);
+		final int REQUIRED_SIZE = 200;
+		int scale = 1;
+		while (options.outWidth / scale / 2 >= REQUIRED_SIZE
+				&& options.outHeight / scale / 2 >= REQUIRED_SIZE)
+			scale *= 2;
+		options.inSampleSize = scale;
+		options.inJustDecodeBounds = false;
+		bm = BitmapFactory.decodeFile(selectedImagePath, options);
+
+		ivImage.setImageBitmap(bm);
 	}
+
 }
