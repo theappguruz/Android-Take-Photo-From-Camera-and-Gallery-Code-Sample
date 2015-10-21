@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-8a19934efc7e01a8b27d3ebf9f7a6462a75eb1b6.jar" />
+    </item>
+    <item
+        jar="/Users/theappguruz/Desktop/Trupti Data/adt-bundle/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-5b4b4d3263de63d76337f7c445f00a406d74d94a.jar" />
+    </item>
+    <item
+        jar="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/classes-c96b48b6bf24432d05938e5b821e6a5f84bdf154.jar" />
+    </item>
+    <item
+        jar="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/classes-56dfe433ebecd2e03e28aa8fe79d6b7788061c22.jar" />
+    </item>
+
+</items>
