@@ -23,4 +23,4 @@
              android:src="?attr/actionModeCloseDrawable"
              style="?attr/actionModeCloseButtonStyle"
              android:layout_width="wrap_content"
-             android:layout_height="match_parent" /><!-- From: file:/Users/theappguruz/Desktop/Android%20Training/Workspace/FFMPEG%20App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/layout/abc_action_mode_close_item_material.xml -->
+             android:layout_height="match_parent" /><!-- From: file:/usr/local/google/buildbot/repo_clients/https___googleplex-android.googlesource.com_a_platform_manifest.git/mnc-sdk-release/frameworks/support/v7/appcompat/res/layout/abc_action_mode_close_item_material.xml --><!-- From: file:/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master%202/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml -->

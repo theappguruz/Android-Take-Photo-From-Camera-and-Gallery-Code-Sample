@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/libs/internal_impl-21.0.3.jar"
+        jar="/Users/tag/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-8a19934efc7e01a8b27d3ebf9f7a6462a75eb1b6.jar" />
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master 2/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-eaf0de57caf8497ca519a48f306fe0f1d11aba81.jar" />
     </item>
     <item
-        jar="/Users/theappguruz/Desktop/Trupti Data/adt-bundle/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master 2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-5b4b4d3263de63d76337f7c445f00a406d74d94a.jar" />
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master 2/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-ba536a4736590dd3bdd81dd40bdac049cf613b17.jar" />
     </item>
     <item
-        jar="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars/classes.jar"
+        jar="/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master 2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/classes-c96b48b6bf24432d05938e5b821e6a5f84bdf154.jar" />
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master 2/app/build/intermediates/pre-dexed/debug/classes-55bfdcac5974a84e329703313ab253a3b8157f4f.jar" />
     </item>
     <item
-        jar="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jar="/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master 2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/theappguruz/Desktop/Android Training/Workspace/FFMPEG App/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master/app/build/intermediates/pre-dexed/debug/classes-56dfe433ebecd2e03e28aa8fe79d6b7788061c22.jar" />
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/tag/AndroidStudioProjects/AndroidTutorialProjects/Android-Take-Photo-From-Camera-and-Gallery-Code-Sample-master 2/app/build/intermediates/pre-dexed/debug/classes-e6aa954694b2b35f6b0c6ba5b4f9a593783910d6.jar" />
     </item>
 
 </items>

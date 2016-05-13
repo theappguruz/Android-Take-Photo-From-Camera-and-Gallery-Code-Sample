@@ -10,14 +10,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.MediaStore.MediaColumns;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,9 +24,10 @@ import com.example.takeimage.R;
 
 public class MainActivity extends Activity {
 
-	int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-	Button btnSelect;
-	ImageView ivImage;
+	private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+	private Button btnSelect;
+	private ImageView ivImage;
+	private String userChoosenTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,22 @@ public class MainActivity extends Activity {
 		ivImage = (ImageView) findViewById(R.id.ivImage);
 	}
 
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		switch (requestCode) {
+			case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					if(userChoosenTask.equals("Take Photo"))
+						cameraIntent();
+					else if(userChoosenTask.equals("Choose from Library"))
+						galleryIntent();
+				} else {
+					//code for deny
+				}
+				break;
+		}
+	}
+
 	private void selectImage() {
 		final CharSequence[] items = { "Take Photo", "Choose from Library",
 				"Cancel" };
@@ -55,23 +69,38 @@ public class MainActivity extends Activity {
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int item) {
+				boolean result=Utility.checkPermission(MainActivity.this);
+
 				if (items[item].equals("Take Photo")) {
-					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					startActivityForResult(intent, REQUEST_CAMERA);
+					userChoosenTask ="Take Photo";
+					if(result)
+						cameraIntent();
+
 				} else if (items[item].equals("Choose from Library")) {
-					Intent intent = new Intent(
-							Intent.ACTION_PICK,
-							android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-					intent.setType("image/*");
-					startActivityForResult(
-							Intent.createChooser(intent, "Select File"),
-							SELECT_FILE);
+					userChoosenTask ="Choose from Library";
+					if(result)
+						galleryIntent();
+
 				} else if (items[item].equals("Cancel")) {
 					dialog.dismiss();
 				}
 			}
 		});
 		builder.show();
+	}
+
+	private void galleryIntent()
+	{
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);//
+		startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
+	}
+
+	private void cameraIntent()
+	{
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(intent, REQUEST_CAMERA);
 	}
 
 	@Override
@@ -111,27 +140,15 @@ public class MainActivity extends Activity {
 
 	@SuppressWarnings("deprecation")
 	private void onSelectFromGalleryResult(Intent data) {
-		Uri selectedImageUri = data.getData();
-		String[] projection = { MediaColumns.DATA };
-		Cursor cursor = managedQuery(selectedImageUri, projection, null, null,
-				null);
-		int column_index = cursor.getColumnIndexOrThrow(MediaColumns.DATA);
-		cursor.moveToFirst();
 
-		String selectedImagePath = cursor.getString(column_index);
-
-		Bitmap bm;
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(selectedImagePath, options);
-		final int REQUIRED_SIZE = 200;
-		int scale = 1;
-		while (options.outWidth / scale / 2 >= REQUIRED_SIZE
-				&& options.outHeight / scale / 2 >= REQUIRED_SIZE)
-			scale *= 2;
-		options.inSampleSize = scale;
-		options.inJustDecodeBounds = false;
-		bm = BitmapFactory.decodeFile(selectedImagePath, options);
+		Bitmap bm=null;
+		if (data != null) {
+			try {
+				bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		ivImage.setImageBitmap(bm);
 	}
